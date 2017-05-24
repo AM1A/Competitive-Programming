@@ -1,0 +1,487 @@
+Node* Insert(Node *head,int data)
+{
+  // Complete this method
+    Node*nn = new Node();
+    nn->data  = data;
+    //Node*temp = head;
+    if(head==NULL)
+    {
+        nn->next  = NULL;
+       // head = nn;
+    }
+    else
+    {
+        
+        nn->next = head;
+      //  head = nn;
+    }
+    head = nn;
+    return head;
+}
+
+Node* InsertNth(Node *head, int data, int position)
+{
+  // Complete this method only
+  // Do not write main function. 
+    Node* nn = new Node();
+    Node* temp = head;
+    nn->data = data;
+    if(head==NULL)
+    {
+        nn->next = NULL;
+        head = nn;
+    }
+    else
+    {
+        if(position==0)
+        {
+            nn->next = head;
+            head = nn;
+        }
+        else
+        {
+            int i = 0;
+            for(i = 1;i<=position-1;i++)
+            {
+                temp = temp->next;
+            }
+            Node* nxt = temp->next;
+            temp->next = nn;
+            //temp = temp->next;
+            //temp = temp->next;
+            nn->next =nxt;
+        }
+        
+    }
+    return head;
+}
+
+
+Node* Delete(Node *head, int position)
+{
+  // Complete this method
+    
+    Node* temp = head;
+    
+    if(head==NULL)
+    {
+        return head;
+    }
+    else
+    {
+        if(position==0)
+        {
+            //Node* tmp2 = head->next;
+            head = head->next;
+        }
+        else
+        {
+            int i = 0;
+            for(i = 1;i<=position-1;i++)
+            {
+                temp = temp->next;
+            }
+            Node* nxt = temp->next;
+            //temp->next = nn;
+            nxt = nxt->next;
+            temp->next = nxt;
+            //temp = temp->next;
+            //temp = temp->next;
+            //nn->next =nxt;
+        }
+        
+    }
+    return head;
+}
+
+void ReversePrint(Node *head)
+{
+  // This is a "method-only" submission. 
+  // You only need to complete this method. 
+    int i,count = 0;
+    Node* temp = head;
+    while(temp!=NULL)
+    {
+            count++;
+            temp = temp->next;
+    }
+    int arr[count];
+    for(i = 0;i<count;i++)
+    {
+        arr[count-1-i] = head->data;
+        head = head->next;
+    }
+    for(i = 0;i<count;i++)
+    {
+        printf("%d\n",arr[i]);
+    }
+}
+
+Node* Reverse(Node *head)
+{
+   /* if(head==NULL||head->next==NULL)
+    {
+        return head;
+    }
+    Node* temp = head;
+    int count = 0;
+    while(temp!=NULL)
+    {
+        temp = temp->next;
+        count++;
+    }
+    Node* temp2 = head;
+    int arr[count],i;
+    for(i = 0;i<count;i++)
+    {
+        arr[count-i-1] = temp2->data;
+        temp2 = temp2->next;
+    }
+    Node* rhead = new Node();
+    for(i = 0;i<count;i++)
+    {
+        if(rhead==NULL)
+        {
+            Node* te2 = new Node();
+            te2->data = arr[i];
+            te2->next = NULL;
+            rhead=te2;
+            
+        }
+        
+        else
+        {
+            Node* temp3 = rhead;
+            while(temp3->next!=NULL)
+            {
+                temp3 = temp3->next;
+            }
+            Node* te2 = new Node();
+            te2->data = arr[i];
+            te2->next = NULL;
+            temp3->next = te2;
+            //rhead = temp3;
+            
+        }
+    }
+    return rhead;*/
+    if(head==NULL||head->next==NULL)
+    {
+        return head;
+    }
+    Node* prevN = NULL;
+    Node* curN = head;
+    Node* nexN = NULL;
+    while(curN!=NULL)
+    {
+        nexN = curN->next;
+        curN->next = prevN;
+        prevN = curN;
+        curN = nexN;
+    }
+    head = prevN;
+    return head;
+    
+    
+}
+
+int CompareLists(Node *headA, Node* headB)
+{
+  // This is a "method-only" submission. 
+  // You only need to complete this method 
+    int result = 0,ca = 0,cb = 0;
+    Node* ha = headA;
+    Node* hb = headB;
+    while(ha!=NULL)
+    {
+        ca++;
+        ha = ha->next;
+    }
+    while(hb!=NULL)
+    {
+        cb++;
+        hb = hb->next;
+    }
+    if(ca!=cb)
+    {
+        return 0;
+    }
+    while(headA!=NULL&&headB!=NULL)
+    {
+        //if(headA!=NULL)
+        //ca++;
+        //if(headB!=NULL)
+        //cb++;
+        result = (headA->data==headB->data)?1:0;
+        if(result==0)
+        {
+            return result;
+        }
+       headA = headA->next;
+       headB = headB->next;
+    }
+    /*if(ca!=cb)
+    {
+        return 0;
+    }*/
+    return result;
+}
+
+Node* MergeLists(Node *headA, Node* headB)
+{
+  // This is a "method-only" submission. 
+  // You only need to complete this method 
+    Node* headF = new Node();
+    if(headA==NULL||headB==NULL)
+    {
+        headF = (headA==NULL)?headB:headA;
+        return headF;
+    }
+    else
+    {
+        int ca = 0,cb = 0;
+        Node* ha = headA;
+        Node* hb = headB;
+        /*while(ha!=NULL)
+        {
+            ha = ha->next;
+            ca++;
+        }
+        while(hb!=NULL)
+        {
+            hb = hb->next;
+            cb++;
+        }*/
+        headF = (ha->data>hb->data)?hb:ha;
+        while(ha!=NULL||hb!=NULL)//this condition always causes errors
+        {
+            if(ha==NULL&&hb!=NULL)
+            {
+                headF->next = hb;
+                hb = hb->next;
+            }
+            if(hb==NULL&&ha!=NULL)
+            {
+                headF->next = ha;
+                ha = ha->next;
+            }
+            if(ha!=NULL&&hb!=NULL)
+            {
+                headF->next = (ha->data>hb->data)?hb:ha;
+                hb = hb->next;
+                ha = ha->next;
+            }
+        }
+        return headF;
+        
+    }
+}
+
+/*
+  Merge two sorted lists A and B as one linked list
+  Node is defined as 
+  struct Node
+  {
+     int data;
+     struct Node *next;
+  }
+*/
+Node* MergeLists(Node *headA, Node* headB)
+{
+  // This is a "method-only" submission. 
+  // You only need to complete this method 
+    Node* headF = new Node();
+    if(headA==NULL||headB==NULL)
+    {
+        headF = (headA==NULL)?headB:headA;
+        return headF;
+    }
+    else
+    {
+        /*int ca = 0,cb = 0;
+        Node* ha = headA;
+        Node* hb = headB;
+        while(ha!=NULL)
+        {
+            ha = ha->next;
+            ca++;
+        }
+        while(hb!=NULL)
+        {
+            hb = hb->next;
+            cb++;
+        }
+        headF = (ha->data>hb->data)?hb:ha;
+        while(ha!=NULL||hb!=NULL)
+        {
+            if(ha==NULL&&hb!=NULL)
+            {
+                headF->next = hb;
+                hb = hb->next;
+                headF = headF->next;
+            }
+            if(hb==NULL&&ha!=NULL)
+            {
+                headF->next = ha;
+                ha = ha->next;
+                headF = headF->next;
+            }
+            if(ha!=NULL&&hb!=NULL)
+            {
+                headF->next = (ha->data>hb->data)?hb:ha;
+                hb = hb->next;
+                ha = ha->next;
+                headF = headF->next;
+            }
+        }*/
+         if(headA->data<=headB->data)
+         {
+             headA->next = MergeLists(headA->next,headB);
+         }
+        else if(headA->data>headB->data)
+         {
+            Node* temp = headB;
+            headB = headB->next;
+            temp->next = headA;
+            headA = temp;
+            headA->next = MergeLists(headA->next,headB);
+         }
+        headF = headA;
+        return headF;
+        
+    }
+}
+
+/*
+  Get Nth element from the end in a linked list of integers
+  Number of elements in the list will always be greater than N.
+  Node is defined as 
+  struct Node
+  {
+     int data;
+     struct Node *next;
+  }
+*/
+int GetNode(Node *head,int positionFromTail)
+{
+  // This is a "method-only" submission. 
+  // You only need to complete this method. 
+    Node* temp = head;
+    int count = 0;
+    while(temp!=NULL)
+    {
+        count++;
+        temp = temp->next;
+    }
+    int i;
+    temp = head;
+    for(i = 0;i<count-1-positionFromTail;i++)
+    {
+        /*if(i==n-1-positionFromTail)
+        {
+            return temp->data;
+        }*/
+        temp = temp->next;
+    }
+    return temp->data;
+}
+
+/*
+  Remove all duplicate elements from a sorted linked list
+  Node is defined as 
+  struct Node
+  {
+     int data;
+     struct Node *next;
+  }
+*/
+Node* RemoveDuplicates(Node *head)
+{
+  // This is a "method-only" submission. 
+  // You only need to complete this method. 
+    Node* cur = head->next;
+    Node* prev = head;
+    Node* fut = NULL;
+    if(cur==NULL)
+    {
+        return head;
+    }
+    while(cur->next!=NULL)
+    {
+        fut = cur->next;
+        if(prev==cur)
+        {
+            prev->next = fut;
+            cur->next = NULL;
+        }
+        
+        if(fut!=NULL)
+        {
+            prev = fut;
+            cur = fut->next;
+        }
+    }
+    return head;
+    
+}
+
+/*
+  Remove all duplicate elements from a sorted linked list
+  Node is defined as 
+  struct Node
+  {
+     int data;
+     struct Node *next;
+  }
+*/
+Node* RemoveDuplicates(Node *head)
+{
+  // This is a "method-only" submission. 
+  // You only need to complete this method. 
+    Node* cur = head;
+    //Node* prev = head;
+    //Node* fut = head->next;
+    if(cur==NULL)
+    {
+        return head;
+    }
+   /* while(fut!=NULL&&fut->data==cur->data)
+    {
+        Node* td = fut->next;
+        fut = fut->next;
+        delete td;
+    }
+    cur->next = RemoveDuplicates(fut);
+    return cur;*/
+    /*while(cur!=NULL)
+    {
+        fut = cur->next;
+        if(prev==cur)
+        {
+            prev->next = fut;
+            cur->next = NULL;
+        }
+        
+        if(fut!=NULL)
+        {
+            prev = fut;
+            cur = fut->next;
+        }
+    }*/
+    //return head;
+    while(cur->next!=NULL)
+    {
+        if(cur->next->data==cur->data)
+        {
+            Node* tod = cur->next;
+            cur->next = cur->next->next;
+            delete tod;
+        }
+        else
+        {
+            cur = cur->next;
+        }
+    }
+    return head;
+}
+
