@@ -1,0 +1,295 @@
+/*
+   Find merge point of two linked lists
+   Node is defined as
+   struct Node
+   {
+       int data;
+       Node* next;
+   }
+*/
+int FindMergeNode(Node *headA, Node *headB)
+{
+    // Complete this function
+    // Do not write the main method. 
+    int dat = 0;
+    /*while(headA!=NULL)
+    {
+        Node* temp = headB;        
+        while(temp!=NULL)
+        {
+            if(temp->next==headA)
+            {
+                dat =  headA->data;
+                break;
+            }
+            temp = temp->next;
+        }
+        headA = headA->next;
+    }
+    return dat;*/
+    Node* ta = headA;
+    Node* tb = headB;
+    while(ta!=tb)
+    {
+        ta = ta->next;
+        if(ta->next==NULL)
+        {
+            ta = headB;
+        }
+        tb = tb->next;
+        if(tb->next == NULL)
+        {
+            tb = headA;
+        }
+    }
+    return tb->data;
+}
+
+/*
+   Find merge point of two linked lists
+   Node is defined as
+   struct Node
+   {
+       int data;
+       Node* next;
+   }
+*/
+int FindMergeNode(Node *headA, Node *headB)
+{
+    // Complete this function
+    // Do not write the main method. 
+    int dat = 0;
+    /*while(headA!=NULL)
+    {
+        Node* temp = headB;        
+        while(temp!=NULL)
+        {
+            if(temp->next==headA)
+            {
+                dat =  headA->data;
+                break;
+            }
+            temp = temp->next;
+        }
+        headA = headA->next;
+    }
+    return dat;*/
+    Node* ta = headA;
+    Node* tb = headB;
+    while(ta!=tb)
+    {
+        
+        if(ta->next==NULL)
+        {
+            ta = headB;
+        }
+        else
+        {
+            ta = ta->next;    
+        }
+        
+        if(tb->next == NULL)
+        {
+            tb = headA;
+        }
+        else
+        {
+            tb = tb->next;    
+        }
+    }
+    return tb->data;
+}
+
+/*
+    Insert Node in a doubly sorted linked list 
+    After each insertion, the list should be sorted
+   Node is defined as
+   struct Node
+   {
+     int data;
+     Node *next;
+     Node *prev;
+   }
+*/
+Node* SortedInsert(Node *head,int data)
+{
+    // Complete this function
+   // Do not write the main method.
+    Node* temp = new Node();
+    temp = head;
+    Node* previ = new Node();
+    previ = head;
+    if(head==NULL)
+    {
+         Node* nn = new Node();
+         nn->data = data;
+         nn->prev = NULL;
+         nn->next = NULL;
+         head = nn;
+         return head;
+    }
+    if(head->next==NULL)
+    {
+        if(head->data>data)
+        {
+            Node* nn = new Node();
+            nn->data = data;
+            nn->prev = NULL;
+            nn->next = head;
+            head->prev = nn;
+            head = nn;
+            return head;
+        }
+        else if(head->data<=data)
+        {
+            Node* nn = new Node();
+            nn->data = data;
+            nn->prev = head;
+            nn->next = NULL;
+            head->next = nn;
+            return head;
+        }
+    }
+    while(temp->data<data&&temp!=NULL)
+    {
+        previ = temp;
+        temp = temp->next;
+    }
+    Node* nn = new Node();
+    nn->data = data;
+    nn->prev = previ;
+    nn->next = temp;
+    previ->next = nn;
+    temp->prev = nn;
+    return head;
+    
+}
+
+/*
+    Insert Node in a doubly sorted linked list 
+    After each insertion, the list should be sorted
+   Node is defined as
+   struct Node
+   {
+     int data;
+     Node *next;
+     Node *prev;
+   }
+*/
+Node* SortedInsert(Node *head,int data)
+{
+    // Complete this function
+   // Do not write the main method.
+  /*  Node* temp = new Node();
+    temp = head;
+    Node* previ = new Node();
+    previ = head;
+    if(head==NULL)
+    {
+         Node* nn = new Node();
+         nn->data = data;
+         nn->prev = NULL;
+         nn->next = NULL;
+         head = nn;
+         return head;
+    }
+    if(head->next==NULL)
+    {
+        if(head->data>data)
+        {
+            Node* nn = new Node();
+            nn->data = data;
+            nn->prev = NULL;
+            nn->next = head;
+            head->prev = nn;
+            head = nn;
+            return head;
+        }
+        else if(head->data<=data)
+        {
+            Node* nn = new Node();
+            nn->data = data;
+            nn->prev = head;
+            nn->next = NULL;
+            head->next = nn;
+            return head;
+        }
+    }
+    while(temp->data<data&&temp!=NULL)
+    {
+        previ = temp;
+        temp = temp->next;
+    }
+    Node* nn = new Node();
+    nn->data = data;
+    nn->prev = previ;
+    nn->next = temp;
+    previ->next = nn;
+    temp->prev = nn;
+    return head;
+    */
+    if(head==NULL)
+    {
+        Node* nn = new Node();
+        nn->data = data;
+        return nn;
+            
+    }
+    if(head->data<=data)
+    {
+        head->next = SortedInsert(head->next,data);
+        head->next->prev = head;
+    }
+    else if(head->data>data)
+    {
+        Node* nn = new Node();
+        nn->data = data;
+        nn->next = head;
+        nn->prev = head->prev;
+        head->prev = nn;
+        head = nn;
+        
+    }
+    return head;
+    
+}
+
+/*
+   Reverse a doubly linked list, input list may also be empty
+   Node is defined as
+   struct Node
+   {
+     int data;
+     Node *next;
+     Node *prev;
+   }
+*/
+Node* Reverse(Node* head)
+{
+    // Complete this function
+    // Do not write the main method. 
+    Node* cur = head;
+    if(cur==NULL)
+    {
+        return cur;
+    }
+    if(cur->next==NULL)
+    {
+        return cur;
+    }
+    Node* pre = NULL;
+    Node* fut = NULL;
+    while(cur!=NULL)
+    {
+        Node* temp = pre;
+        fut = cur->next;
+        cur->next = pre;
+        cur->prev = fut;
+        pre = cur;
+        cur = fut;
+        
+    }
+    return pre;
+}
+
+
