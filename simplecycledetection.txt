@@ -1,0 +1,50 @@
+/*
+Detect a cycle in a linked list. Note that the head pointer may be 'NULL' if the list is empty.
+
+A Node is defined as: 
+    struct Node {
+        int data;
+        struct Node* next;
+    }
+*/
+
+bool has_cycle(Node* head) {
+    // Complete this function
+    // Do not write the main method
+    Node* temp1 = head;
+    Node* temp2 = head;
+    while(temp2!=NULL&&temp2->next!=NULL)
+    {
+        
+        //else
+        //{
+            temp1 = temp1->next;
+        //}
+        //else
+        //{
+            temp2 = temp2->next;
+            temp2 = temp2->next;
+        //}
+        if(temp1==temp2)
+        {
+            return true;   
+        }
+    }
+    return false;
+     
+    /*Node* temp = head;
+    int count = 0;
+    while(temp!=NULL)
+    {
+        temp = temp->next;
+        count++;
+    }
+    int arr[count];
+    int i;
+    for(i = 0;i<count;i++)
+    {
+        arr[count] = 0;
+    }
+    temp = head;*/
+    
+}
