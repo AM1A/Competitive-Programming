@@ -1,0 +1,109 @@
+/* you only have to complete the function given below.  
+Node is defined as  
+
+struct node
+{
+    int data;
+    node* left;
+    node* right;
+};
+
+*/
+
+void preOrder(node *root) 
+{
+    printf("%d ",root->data);
+    if(root->left!=NULL){preOrder(root->left);}
+    if(root->right!=NULL){preOrder(root->right);}
+
+}
+
+/* you only have to complete the function given below.  
+Node is defined as  
+
+struct node
+{
+    int data;
+    node* left;
+    node* right;
+};
+
+*/
+
+
+void postOrder(node *root) 
+{
+   if(root==NULL)
+   {
+        return;   
+   }
+    if(left!=NULL)
+    {
+        postOrder(root->left);
+    }
+   if(right!=NULL)
+    {
+        postOrder(root->right);
+    }
+    printf("%d ",root->data);
+}
+
+
+/* you only have to complete the function given below.  
+Node is defined as  
+
+struct node
+{
+    int data;
+    node* left;
+    node* right;
+};
+
+*/
+
+void inOrder(node *root) 
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    inOrder(root->left);
+    printf("%d ",root->data);
+    inOrder(root->right);
+}
+
+int height(Node* root) 
+    {
+        // Write your code here.
+        int count1 = 0,count2 = 0;
+        if(root==NULL||(root->left==NULL&&root->right==NULL))
+        {
+            return 0;
+        }
+     /*   if(root->left==NULL&&root->right==NULL)
+        {
+            return 0;
+        }*/
+        else
+        {
+            /*Node* root1 = root;
+            while(root1->left!=NULL)
+            {
+                count1++;
+                root1 = root1->left;
+                
+            }
+            Node* root2 = root;
+            while(root2->right!=NULL)
+            {
+                count2++;
+                root2 = root2->right;
+                
+            }
+            height = (count1>count2)?count1:count2;
+            return height;*/
+            return max(height(root->left),height(root->right))+1;
+            
+        }
+    }
+
