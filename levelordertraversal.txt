@@ -1,0 +1,119 @@
+
+/*
+struct node
+{
+    int data;
+    node* left;
+    node* right;
+}*/
+
+void LevelOrder(node * root)
+{
+   /*
+   if(root!=NULL)
+    {
+        printf("%d ",root->data);
+    }
+    if(root->left!=NULL)
+    {
+        LevelOrder(root->left);
+    }
+    if(root->right!=NULL)
+    {
+        LevelOrder(root->right);
+    }
+    */
+    node* temp = root;
+    node* temp2 = root;
+    printf("%d ",temp->data);
+   while(temp!=NULL)
+   {
+       temp = root;
+    //   printf("%d ",temp->data);
+       if(temp->left!=NULL)
+       {
+           temp = temp->left;
+           printf("%d ",temp->data);
+       }
+       temp = root;
+       if(temp->right!=NULL)
+       {
+           temp = temp->right;
+           printf("%d ",temp->data);
+       }
+       if(root->left!=NULL)
+       {
+           root = root->left;
+       }
+   }
+  
+}
+
+
+/*
+struct node
+{
+    int data;
+    node* left;
+    node* right;
+}*/
+#include<queue>
+void LevelOrder(node * root)
+{
+ /*
+   if(root!=NULL)
+    {
+        printf("%d ",root->data);
+    }
+    if(root->left!=NULL)
+    {
+        LevelOrder(root->left);
+    }
+    if(root->right!=NULL)
+    {
+        LevelOrder(root->right);
+    }
+    */
+     /* 
+    node* temp = root;
+    node* temp2 = root;
+    printf("%d ",temp->data);
+   while(temp!=NULL)
+   {
+       temp = root;
+    //   printf("%d ",temp->data);
+       if(temp->left!=NULL)
+       {
+           temp = temp->left;
+           printf("%d ",temp->data);
+       }
+       temp = root;
+       if(temp->right!=NULL)
+       {
+           temp = temp->right;
+           printf("%d ",temp->data);
+       }
+       if(root->left!=NULL)
+       {
+           root = root->left;
+       }
+   } */
+    queue<node*> q;
+    node* temp = root;
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        if(temp->left!=NULL)
+        {
+            q.push(temp->left);
+        }
+        if(temp->right!=NULL)
+        {
+            q.push(temp->right);
+        }
+        temp = q.front();
+        q.pop();
+    }
+  
+}
+
