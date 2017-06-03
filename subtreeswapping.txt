@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+typedef struct node{
+    int data;
+    struct node *left;
+    struct node *right;
+}node;
+
+void rev(node *root, int h){
+    if(root==NULL)
+        return;
+    if(h==0){
+        node *temp;
+        temp=root->left;
+        root->left=root->right;
+        root->right=temp;
+    }
+    else{
+        rev(root->left, h-1);
+        rev(root->right, h-1);
+    }      
+}
+
+void ino(node * root){
+    if(root==NULL);
+    else{
+        ino(root->left);
+        printf("%d ", root->data);
+        ino(root->right);
+    }
+}
+
+int main() {
+    int n, i=0, a, c, t, k;
+    scanf("%d", &n);
+    node *b[n];
+    for(i=0;i<n;i++){
+        node *temp;
+        temp=(node *)malloc(sizeof(node));
+        temp->data=i+1;
+        b[i]=temp;
+    }
+    for(i=0;i<n;i++){
+        scanf("%d %d", &a, &c);
+        if(a==-1)
+            b[i]->left=NULL;
+        else
+            b[i]->left=b[a-1];
+        if(c==-1)
+            b[i]->right=NULL;
+        else
+            b[i]->right=b[c-1];
+    }
+    node *root;
+    root=b[0];
+    scanf("%d", &t);
+    while(t-->0){
+        scanf("%d", &k);
+        i=k;
+        while(i<n){
+        rev(root, i-1);
+            i=i+k;
+        }
+        ino(root);
+        printf("\n");
+    }
+    return 0;
+}
