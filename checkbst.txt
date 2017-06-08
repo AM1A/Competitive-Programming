@@ -1,0 +1,74 @@
+/* Hidden stub code will pass a root argument to the function below. Complete the function to solve the challenge. Hint: you may want to write one or more helper functions.  
+
+The Node struct is defined as follows:
+   struct Node {
+      int data;
+      Node* left;
+      Node* right;
+   }
+*/
+bool checkBST(Node* root) 
+{
+   /* bool val;
+    if(root==NULL)
+    {
+        return true;
+    }
+  
+    if(root->left!=NULL&&root->left->data>root->data)
+    {
+        return false;
+    }
+    if(root->right!=NULL&&root->right->data<root->data)
+    {
+        return false;
+    }
+        if(root->left!=NULL&&root->right==NULL)
+    {
+        if(root->left->data>root->data)
+        {
+            return false;
+        }
+        else
+        {
+            return val = checkBST(root->left);
+        }
+    }
+    if(root->right!=NULL&&root->left==NULL)
+    {
+        if(root->right->data<root->data)
+        {
+            return false;
+        }
+        else
+        {
+            return val = checkBST(root->right);
+        }
+    }
+    if(root->left!=NULL&&root->right!=NULL)
+    {
+        if(((root->left->data)<(root->data))&&((root->right->data)>(root->data)))
+        {
+            return val = checkBST(root->left)&&checkBST(root->right);    
+        }
+    }
+
+   return val;*/
+     static int last_visited = -2;
+        if (!root) {
+            return true;
+        }
+        if (!checkBST(root->left)) {
+            return false;
+        }
+        if (root->data <= last_visited) {
+            return false;
+        }
+        last_visited = root->data;
+        if (!checkBST(root->right)) {
+            return false;
+        }
+        return true;
+
+      
+   }
