@@ -67,7 +67,7 @@ void do_it(int x)
    if (mi[2*c[x].s-add]) mini=min(mini,add); else
    if (mi[2*c[x].s]) mini=min(mini,add);
 
-   return ;
+   return;
 }
 
 void uradi(int x)
