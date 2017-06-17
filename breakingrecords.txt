@@ -1,0 +1,78 @@
+solution.c: In function ‘getRecord’:
+solution.c:14:9: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+     max = s[0];
+         ^
+solution.c:15:9: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+     min = s[0];
+         ^
+solution.c:19:15: warning: comparison between pointer and integer
+         if(max<s[i])
+               ^
+solution.c:21:17: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+             max = s[i];
+                 ^
+solution.c:26:17: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+             min = s[i];
+                 ^
+solution.c:30:17: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+     result_size = 2;
+                 ^
+solution.c:35:1: error: control reaches end of non-void function [-Werror=return-type]
+ }
+ ^
+cc1: some warnings being treated as errors
+
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+
+int* getRecord(int s_size, int* s, int *result_size)
+{
+    // Complete this function
+    int max ;//= malloc(sizeof(int));
+    int min ;//= malloc(sizeof(int));
+    max = s[0];
+    min = s[0];
+    int msb = 0,lsb = 0,i;
+    for(i = 0;i<s_size;i++)
+    {
+        if(max<s[i])
+        {
+            max = s[i];
+            msb++;
+        }
+        if(min>s[i])
+        {
+            min = s[i];
+            lsb++;
+        }
+    }
+    int *arr = malloc(sizeof(int) * 2);
+    *result_size = 2;    
+    arr[0] = msb;
+    arr[1] = lsb;
+    return arr;
+}
+
+int main() {
+    int n; 
+    scanf("%d",&n);
+    int *s = malloc(sizeof(int) * n);
+    for(int s_i = 0; s_i < n; s_i++){
+       scanf("%d",&s[s_i]);
+    }
+    int result_size;
+    int* result = getRecord(n, s, &result_size);
+    for(int i = 0; i < result_size; i++) {
+        if (i) {
+            printf(" ");
+        }
+        printf("%d", result[i]);
+    }
+    puts("");
+    return 0;
+}
