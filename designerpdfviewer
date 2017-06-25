@@ -1,0 +1,29 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+
+int main(){
+    int *h = malloc(sizeof(int) * 26);
+    for(int h_i = 0; h_i < 26; h_i++){
+       scanf("%d",&h[h_i]);
+    }
+    char* word = (char *)malloc(512000 * sizeof(char));
+    scanf("%s",word);
+    int max = -1;
+    int i;
+    int len = 0;
+    for(i = 0;i<strlen(word);i++)
+    {
+        if(max<h[(word[i]-'a')])
+        {
+            max = h[(word[i]-'a')];
+        }
+        len++;
+    }
+    printf("%d\n",max*len/*((int)strlen(word))*/);
+    return 0;
+}
