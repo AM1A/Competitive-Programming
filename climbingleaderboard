@@ -18,3 +18,52 @@ int main(){
   }
   return 0;
 }
+
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+
+int main()
+{
+    int n; 
+    scanf("%d",&n);
+    int *scores = malloc(sizeof(int) * n);
+    for(int scores_i = 0; scores_i < n; scores_i++)
+    {
+       scanf("%d",&scores[scores_i]);
+    }
+    int m,rank,i,j; 
+    scanf("%d",&m);
+    int *alice = malloc(sizeof(int) * m);
+    for(int alice_i = 0; alice_i < m; alice_i++)
+    {
+       scanf("%d",&alice[alice_i]);
+    }
+    // your code goes here
+    int last = n-1;
+    for(i = 0;i<m;i++)
+    {
+        rank = 0;
+        for(j = 0;j<last;j++)
+        {
+            if(scores[j]>alice[i]&&scores[j]!=scores[j+1])
+            {
+                rank++;
+            }
+        }
+        rank = rank+1;
+        //last = rank;
+        if(scores[n-1]>alice[i])
+        {
+            rank++;
+        }
+        printf("%d\n",rank);
+        //n = n-1;
+            
+    }
+    return 0;
+}
