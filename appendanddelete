@@ -1,0 +1,109 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+
+int main(){
+    char* s = (char *)malloc(512000 * sizeof(char));
+    scanf("%s",s);
+    char* t = (char *)malloc(512000 * sizeof(char));
+    scanf("%s",t);
+    int k; 
+    scanf("%d",&k);
+    int sl = strlen(s);
+    int tl = strlen(t);
+    int is = 0;
+    int it = 0;
+   /* if(sl==tl&&k>=2*sl)
+    {
+        printf("Yes");
+        //return 0;
+    }
+    else
+    {
+        if(sl>tl)
+        {
+            while(s[is]==t[it])
+            {
+                is++;
+                it++;
+            }
+            int sd = sl-is;
+            int td = tl-it;
+            if(k>=sd+td)
+            {
+                printf("Yes");
+            }
+            else
+            {
+                printf("No");
+            }
+        }
+        else if(sl<tl)
+        {
+            if(k>=sl+tl)
+            {
+                printf("Yes");
+            }
+            else
+            {
+                printf("No");
+            }
+        }
+    }
+    
+    if(sl<tl)
+    {
+        if(k>=sl+tl)
+        {
+            printf("Yes");
+        }
+        else
+        {
+            printf("No");
+        }
+    }
+    if(sl==tl)
+    {
+        if(k>=sl+tl)
+    }
+    if(sl>tl)
+    {
+        while(s[is]==t[it])
+            {
+                is++;
+                it++;
+            }
+            int sd = sl-is;
+            int td = tl-it;
+            if(k>=sd+td)
+            {
+                printf("Yes");
+            }
+            else
+            {
+                printf("No");
+            }   
+    }*/
+    while(s[is]==t[it])
+     {
+                is++;
+                it++;
+     }
+     int sd = sl-is;
+     int td = tl-it;
+     if((k>=sl+tl)||((k>=sd+td)&&(k%2==0)&&(sl%2!=0)&&(tl%2!=0))||((k>=sd+td)&&(k%2==0)&&(sl%2==0)&&(tl%2==0))||((k>=sd+td)&&(k%2!=0)&&((sl+tl)%2!=0)))
+     {
+         printf("Yes");
+     }
+     else
+     {
+         printf("No");
+     }   
+    
+    
+    return 0;
+}
