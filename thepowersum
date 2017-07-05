@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int findPowerSum(int total, int power, int num);
+int main() 
+{ 
+    int total;
+    int power;
+    scanf("%d",&total);
+    scanf("%d",&power);
+    int result = findPowerSum(total, power, 1);
+    printf("%d",result);
+    return 0;
+}
+
+int findPowerSum(int total, int power, int num)
+{
+    int value = total - pow(num, power);
+    
+    if(value < 0) return 0;
+    else if(value == 0) return 1;
+    else return findPowerSum(value , power, num + 1) +
+    			findPowerSum(total, power, num+1);
+}
