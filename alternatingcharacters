@@ -1,0 +1,48 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+
+int alternatingCharacters(char* s)
+{
+    // Complete this function
+    int del = 0,i,j;
+    char* s2 = (char *)malloc(512000 * sizeof(char));
+    /*for(i = strlen(s)-1;i>=0;i--)
+    {
+        
+    }
+    for(i = 0;i<strlen(s)-1;i++)
+    {
+        if(s[i]==s[i+1])
+        {
+            del++;
+        }
+        
+    }*/
+    while(i<(strlen(s)-1))
+    {
+        if(s[i]==s[i+1])
+        {
+            del++;
+           // i++;
+        }
+        i++;
+    }
+    return del;
+}
+
+int main() {
+    int q; 
+    scanf("%i", &q);
+    for(int a0 = 0; a0 < q; a0++){
+        char* s = (char *)malloc(512000 * sizeof(char));
+        scanf("%s", s);
+        int result = alternatingCharacters(s);
+        printf("%d\n", result);
+    }
+    return 0;
+}
