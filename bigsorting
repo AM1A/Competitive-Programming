@@ -1,0 +1,114 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+/*
+int greati(char** unsorted[][],int j,int n)
+{
+    int k,c;
+    char inp[1000000];
+    if(strlen(unsorted[j])>strlen(unsorted[j+1]))
+    {
+        k = 1;
+    }
+    else if(strlen(unsorted[j])==strlen(unsorted[j+1]))
+    {
+        c = strcmp(unsorted[j],unsorted[j+1]);
+        if(c>0)
+        {
+            k = 1;
+        }
+    }
+    else
+    {
+        k = 0;
+    }
+    return k;
+}
+*/
+
+int main()
+{
+    // Enter your code here. Read input from STDIN. Print output to STDOUT
+    int n,i,j,c;
+    scanf("%d",&n);
+    char unsorted[n][1000000];
+  /*  char **unsorted = malloc(sizeof(char* unsorted)*n);
+    for(i = 0;i<n;i++)
+    {
+        char* unsorted[i] = malloc(1000001*sizeof(char));
+    }*/
+    char inp[1000000];
+    for(i = 0;i<n;i++)
+    {
+        scanf("%s",inp);
+        strcpy(unsorted[i],inp);
+    }
+    
+    /*for(i = 0,j = n-1;i<n,j>-1;)
+    {
+        if(strlen(unsorted[i])<strlen(unsorted[j]))
+        {
+            i++;
+            j--;
+        }
+        if(strlen(unsorted[i])==strlen(unsorted[j]))
+        {
+            c = strcmp(unsorted[i],unsorted[j]);
+            if(c>0)
+            {
+                strcpy(inp,unsorted[i]);
+                strcpy(unsorted[i],unsorted[j]);
+                strcpy(unsorted[j],inp);
+            }
+            i++;
+            j--;
+        }
+        if(strlen(unsorted[i])>strlen(unsorted[j]))
+        {
+            strcpy(inp,unsorted[i]);
+            strcpy(unsorted[i],unsorted[j]);
+            strcpy(unsorted[j],inp);
+            i++;
+            j--;
+        }
+    }*/
+    for(i = 0;i<n;i++)
+    {
+        for(j = 0;j<n-i-1;j++)
+        {
+            if((strlen(unsorted[j])>strlen(unsorted[j+1]))||(((strlen(unsorted[j])==strlen(unsorted[j+1])))&&(strcmp(unsorted[j],unsorted[j+1])>0)))
+            {
+                strcpy(inp,unsorted[j]);
+                strcpy(unsorted[j],unsorted[j+1]);
+                strcpy(unsorted[j+1],inp);
+            }
+        }
+    }
+    
+    for(i = 0;i<n;i++)
+    {
+        printf("%s\n",unsorted[i]);
+        //strcpy(unsorted[i],inp);
+    }
+    //long long unsigned int unsorted[n];
+    //long long unsigned int l;
+    //int i;
+    /*
+    for(i = 0;i<n;i++)
+    {
+        scanf("%llu",&unsorted[i]);
+    }
+    
+    for(i = 0;i<n;i++)
+    {
+        printf("%llu\n",unsorted[i]);
+    }*/
+    
+    
+
+    return 0;
+}
