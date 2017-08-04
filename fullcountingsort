@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+struct inp
+{
+    int num;
+    char str[12];
+};
+
+int main() 
+{
+
+ /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int n,i,j,l;
+    scanf("%d\n",&n);
+    int /*arr[n],*/arn[100] = {0};
+    struct inp rec[n];
+    char temp[12];
+    for(i = 0;i<n;i++)
+    {
+        scanf("%d ",&rec[i].num);
+        arn[rec[i].num]++;
+        scanf("%s\n",temp);
+        strcpy(rec[i].str,temp);
+    }
+    
+    for(i = 0;i<100;i++)
+    {
+        //printf("%d ",arn[i]);
+           
+            for(l = 0;l<n;l++)
+            {
+                if((rec[l].num==i)&&(l>=n/2))
+                {
+                    printf("%s ",rec[l].str);
+                }
+                if((rec[l].num==i)&&(l<n/2))
+                {
+                    printf("- ");
+                }
+                
+                
+            }
+            /*
+            j = 0;
+            while(arn[i]>0)
+            {
+              if(rec[j].num!=i)
+              {
+                j++;
+              }
+              if(j<n/2)
+              {
+                printf("- ");
+              }
+              else
+              {
+                printf("%s ",rec[j].str);
+              }
+              j++;
+              arn[i]--;
+            }
+            
+            */
+    
+    }
+       
+    return 0;
+        
+}
