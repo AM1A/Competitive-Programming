@@ -1,0 +1,115 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#include <assert.h>
+
+inline void swapp(int *a,int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+inline int parti(int arr[],int low,int high)
+{
+    //int j = low-1;
+    int i = low-1;
+    int tl = low;
+    int th = high-1;
+    while(tl!=th)
+    {
+        if(arr[tl]<arr[high])
+        {
+            i++;
+            swapp(&arr[tl],&arr[th]);
+            tl++;
+            //th--;
+        }
+    }
+    swapp(&arr[i+1],&arr[high]);
+    return (i+1);
+}
+
+void quickSort(int arr[],int low,int high,int n)
+{
+    if(low<high)
+    {
+        int pi = parti(arr,low,high);
+        int i;
+        for(i = 0;i<n;i++)
+        {
+            printf("%d ",arr[i]);
+        }
+        quickSort(arr,low,pi-1,n);
+        quickSort(arr,pi+1,high,n);
+    }
+    
+}
+
+
+int main(void) 
+{
+    int n,i,j;
+    scanf("%d\n",&n);
+    int arr[n];
+    for(i = 0;i<n;i++)
+    {
+        scanf("%d ",&arr[i]);
+    }
+     /*for(i = 0;i<n;i++)
+    {
+        printf("%d ",arr[i]);
+    }*/
+
+   quickSort(arr,0,n-1,n);
+   
+   
+   return 0;
+}
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int partition(int *array,int low,int high)
+{
+    int pos = low;
+    for(int i=low;i<high;i++)
+        if(array[i]<array[high])
+        {
+            int temp = array[pos];
+            array[pos] = array[i];
+            array[i] = temp;
+            pos++;
+        }
+    int temp = array[pos];
+    array[pos] = array[high];
+    array[high] = temp;
+    return pos;
+}
+void quick(int *array,int low,int high,int n)
+{
+    if(low<high)
+    {
+        int p = partition(array,low,high);
+        for(int i=0;i<n;i++)
+            cout<<array[i]<<" ";
+        cout<<endl;
+        quick(array,low,p-1,n);
+        quick(array,p+1,high,n);
+    }
+}    
+int main() 
+{
+    int n;
+    cin>>n;
+    int *array;
+    array = new int[n];
+    for(int i=0;i<n;i++)
+        cin>>array[i];
+    quick(array,0,n-1,n);
+    return 0;
+}
