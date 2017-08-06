@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int qs = 0;
+int is = 0;
+int parti(int arr[],int low,int high)
+{
+    //int j = low-1;
+    //int i = low-1;
+    int temp;
+    int tl = low;
+    int th = high-1;
+    for(int i = low;i<high;i++)
+    {
+        if(arr[i]<arr[high])
+        {
+            //i++;
+            //tl++
+            temp = arr[tl];
+            arr[tl] = arr[i];
+            arr[i] = temp;
+            tl++;
+            qs++;
+            //swapp(&arr[tl],&arr[th]);
+            //tl++;
+            //th--;
+        }
+    }
+    temp = arr[tl];
+    arr[tl] = arr[high];
+    arr[high] = temp;
+    qs++;       
+    
+    return tl;
+}
+
+void quickSort(int arr[],int low,int high,int n)
+{
+    if(low<high)
+    {
+        int pi = parti(arr,low,high);
+        int i;
+        /*for(i = 0;i<n;i++)
+        {
+            printf("%d ",arr[i]);
+        }*/
+        quickSort(arr,low,pi-1,n);
+        quickSort(arr,pi+1,high,n);
+    }
+    
+}
+
+void insertionSort(int arr[], int n)
+{
+   int i, key, j;
+   for (i = 1; i < n; i++)
+   {
+       key = arr[i];
+       j = i-1;
+ 
+       /* Move elements of arr[0..i-1], that are
+          greater than key, to one position ahead
+          of their current position */
+       while (j >= 0 && arr[j] > key)
+       {
+           arr[j+1] = arr[j];
+           j = j-1;
+           is++;
+       }
+       arr[j+1] = key;
+       //is++;
+   }
+}
+
+
+int main(void) 
+{
+    int n,i,j;
+    scanf("%d\n",&n);
+    int arr[n],arr1[n];
+    for(i = 0;i<n;i++)
+    {
+        scanf("%d ",&arr[i]);
+    }
+     for(i = 0;i<n;i++)
+    {
+       arr1[i] = arr[i];
+    }
+
+    quickSort(arr,0,n-1,n);
+    insertionSort(arr1,n);
+    printf("%d",(is-qs));
+    
+   
+   
+   return 0;
+}
