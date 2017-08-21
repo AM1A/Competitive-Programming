@@ -1,0 +1,54 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+
+int solve(int a_size, int* a)
+{
+    // Complete this function
+    int bs = 0,as = 0,diff = 0,min = 0;
+    int n = a_size;
+    int i;
+    for(i = 0;i<=(n/2-1);i++)
+    {
+        bs = bs+a[i];
+    }
+    for(i = n/2;i<n;i++)
+    {
+        as = as+a[i];
+    }
+    if(bs==as)
+    {
+        return 0;
+    }
+    else
+    {
+        if(bs<as)
+        {
+            diff = as-bs;
+            return diff;         
+        }
+        else
+        {
+            diff = bs-as;
+            return diff;
+        }
+    }
+    return 0;
+    
+}
+
+int main() {
+    int n; 
+    scanf("%d", &n);
+    int *a = malloc(sizeof(int) * n);
+    for(int a_i = 0; a_i < n; a_i++){
+       scanf("%d",&a[a_i]);
+    }
+    int result = solve(n, a);
+    printf("%d\n", result);
+    return 0;
+}
