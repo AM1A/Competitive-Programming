@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int getrev(int l)
+{
+    int lr = 0;
+    int dv = 0;
+    int pt = 10,nod = 0;
+    int cl = l,rem;
+    while(cl!=0)
+    {
+        cl = cl/10;
+        nod++;
+    }
+    nod = nod-1;
+    while(l!=0)
+    {
+        rem = l%10;
+        lr = lr+(rem*pow(10,nod));
+        l = l/10;
+        nod--;
+    }
+    
+    return lr;
+}
+
+
+
+int main()
+{
+
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */  
+    int i,j,k;
+    scanf("%d %d %d\n",&i,&j,&k);
+    int l,lr,nb = 0;
+    //printf("%d\n",getrev(j));
+    for(l = i;l<=j;l++)
+    {
+        lr = getrev(l);
+        if((abs(l-lr))%k==0)
+        {
+            nb++;
+            //printf("%d\n",nb);
+        }
+        
+    }
+    printf("%d",nb);
+    return 0;
+}
