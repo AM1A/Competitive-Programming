@@ -1,0 +1,127 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#include <string>
+#include <stdio.h>
+using namespace std;
+
+
+
+int main() 
+{
+	//code
+	int t;
+	cin>>t;
+	int i,n,j,k,l;
+	string sentence;
+	for(i = 0;i<t;i++)
+	{
+	    cin>>n;
+	    char tokens[n][101];
+	    for(l = 0;l<n;l++)
+	    {
+	        scanf("%s ",tokens[l]);
+	    }
+	    
+        vector <int> count;
+        int c1;
+        for(j = 0;j<n;j++)
+        {
+            c1 = 0;
+            for(k = 0;k<n;k++)
+            {
+               if(strcmp(tokens[j],tokens[k])==0)
+               {
+                    c1++;
+                }
+               // cout<<tokens[k];
+            }
+            count.push_back(c1);
+        }
+        int max = -1;
+        int maxi;
+        for(l = 0;l<count.size();l++)
+        {
+            if(count[l]>max)
+            {
+                maxi = l;
+                max =count[l];
+            }
+        }
+        for(l = 0;l<count.size();l++)
+        {
+            if(count[l]==max)
+            {
+                count[l] = -3;
+            }
+        }
+        max  = -1;
+	    for(l = 0;l<count.size();l++)
+        {
+            if(count[l]>max)
+            {
+                maxi = l;
+                max =count[l];
+            }
+        }
+        cout<<tokens[maxi]<<"\n";
+	    
+	}
+	return 0;
+}
+
+#include <iostream>
+# include<bits/stdc++.h>
+# include<stdio.h>
+using namespace std;
+
+int main() 
+{
+	//code
+    int t,n;
+	cin>>t;
+	int i,j,k,l;
+	 string max1s,max2s;
+	for(i = 0;i<t;i++)
+	{
+	    char *s;
+	    
+	    cin>>n;
+	    vector<string>stuff;
+	    char tokens[n][101];
+	    unordered_map<string,int> sentence;
+	     for(l = 0;l<n;l++)
+	    {
+	        scanf("%s ",tokens[l]);
+	        stuff.push_back(tokens[l]);
+	        //sentence[tokens[l]]++;
+	    }
+	    for(j = 0;j<stuff.size();j++)
+	    {
+	        sentence[stuff[j]]++;
+	    }
+	   int max1 = -1,max2 = -1;
+	   
+	    for(auto it = sentence.begin();it!=sentence.end();it++)
+	    {
+	        if(max1<it->second)
+	        {
+	            max2 = max1;
+	            max1 = it->second;
+	            max2s = max1s;
+	            max1s = it->first;
+	            
+	        }
+	        else if(it->second>max2&&it->second!=max1)
+	        {
+	            max2s = it->first;
+	            max2 = it->second;
+	        }
+	    }
+	    
+	    	cout<<max2s<<"\n";
+	}
+
+	return 0;
+}
+
+
