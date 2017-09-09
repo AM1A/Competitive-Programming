@@ -1,0 +1,77 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int n,i,j;
+	cin>>n;
+	int steps[n];
+	vector<int>solutions;
+	int ml = 1;
+	for(i = 0;i<n;i++)
+	{
+	    scanf("%d ",&steps[i]);
+	}
+	for(i = 0;i<n-1;i++)
+	{
+	    if(steps[i+1]>=steps[i])
+	    {
+	        ml++;
+	        solutions.push_back(ml);
+	        
+	        
+	    }
+	    else
+	    {
+	        ml = 1;
+	    }
+	}
+	sort(solutions.begin(),solutions.end());
+	cout<<solutions.back();
+	
+	return 0;
+}
+
+
+
+
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int n,i,j;
+	cin>>n;
+	int steps[n];
+	//vector<int>solutions;
+	int ml = 1,mlp = 1;
+	for(i = 0;i<n;i++)
+	{
+	    scanf("%d ",&steps[i]);
+	}
+	for(i = 0;i<n-1;i++)
+	{
+
+	    if(steps[i+1]>=steps[i])
+	    {
+	        ml++;
+	        //solutions.push_back(ml);
+	        if(ml>mlp)
+	        {
+	            mlp = ml;
+	        }
+
+	    }
+	    else
+	    {
+	        ml = 1;
+	    }
+	}
+	//sort(solutions.begin(),solutions.end());
+	cout<<mlp;
+
+	return 0;
+}
+
